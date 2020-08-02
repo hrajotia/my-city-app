@@ -1,0 +1,22 @@
+{
+  "generic.actions": "Actions",
+  "generic.actions.delete": "Delete",
+  "generic.actions.search": "Search",
+  "generic.ok": "Ok",
+  "generic.cancel": "Cancel",
+  "generic.start_date": "Start Date",
+  "generic.end_date": "End Date",
+  "generic.server_error_msg": "Some Error have occurred, Please try again!",
+  "table.no_data": "No data available",
+  "confirm.are_you_sure": "Are you sure?",
+  "app.not_found.404": "404",
+  "app.not_found.text": "Page not found",
+  "app.not_found.go_to_home": "Go to Home Page",
+  "mycity.prop.city": "City",
+  "mycity.prop.status": "Status",
+  "mycity.prop.start_date": "Start Date",
+  "mycity.prop.end_date": "End Date",
+  "mycity.prop.price": "Price",
+  "mycity.prop.color": "Color",
+  "mycity.confirm_delete_msg": "Are you sure you want to delete it? You are not able to restore it later."
+}
