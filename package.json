@@ -11,7 +11,7 @@
     "bluebird": "3.7.2",
     "consolidate": "0.15.1",
     "dotenv": "8.2.0",
-    "grunt": "1.0.4",
+    "grunt": "1.2.1",
     "ipaddr.js": "1.9.1",
     "ipware": "2.0.0",
     "lodash": "4.17.19",
