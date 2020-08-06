@@ -14,7 +14,7 @@ module.exports = function sendOK(data) {
   const res = this.res;
   const info = {
     code: 'REQ_SUCCESS',
-    message: (data && data.message) || 'Successfully performed an action.',
+    message: (data && data.message) || 'generic.created_msg',
     traceId: req.headers[sails.config.constants.REQUEST_ID_HEADER] || '',
     referenceInfo: '',
     data: (data && data.data) ? data.data : {}

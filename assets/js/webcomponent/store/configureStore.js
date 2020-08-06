@@ -1,4 +1,4 @@
-import {createStore, compose, applyMiddleware} from 'redux';
+import { createStore, compose, applyMiddleware } from 'redux';
 import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
 import thunk from 'redux-thunk';
 import { createHashHistory as createHistory } from 'history';
@@ -37,7 +37,8 @@ function configureStoreDev(initialState) {
   const middlewares = [
     // Add other middleware on this line...
 
-    // Redux middleware that spits an error on you when you try to mutate your state either inside a dispatch or between dispatches.
+    // Redux middleware that spits an error on you when you try to mutate your state
+    // either inside a dispatch or between dispatches.
     reduxImmutableStateInvariant({
       ignore: []
     }),

@@ -27,7 +27,7 @@ module.exports.session = {
   *                                                                          *
   ***************************************************************************/
 
-   cookie: {
+  cookie: {
     maxAge: 24 * 60 * 60 * 1000,
     secure: false
   },
@@ -45,7 +45,7 @@ module.exports.session = {
   * https://sailsjs.com/config/session                                       *
   *                                                                          *
   ***************************************************************************/
-  isSessionDisabled: function (req){
+  isSessionDisabled: function (req) {
     return !!req.path.match(req._sails.LOOKS_LIKE_ASSET_RX);
   }
 

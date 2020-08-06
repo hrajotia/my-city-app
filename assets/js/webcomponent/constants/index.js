@@ -9,5 +9,5 @@ export default {
   dateTimeFormatPicker: 'dd/MM/yyyy HH:mm',
   dateFormatPicker: 'yyyy-MM-dd',
   dateTimeFormat: 'DD/MM/YYYY HH:mm',
-  dateFormat: 'YYYY-MM-DD',
+  dateFormat: 'YYYY-MM-DD'
 };

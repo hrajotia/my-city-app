@@ -29,7 +29,7 @@ describe('#myCityService', () => {
       mock.mockModel(MyCity, 'find', null, error);
 
       myCityService.getMyCitiesPaginated({}, 1, 0, '')
-        .catch(function(err) {
+        .catch((err) => {
           expect(err).to.be.a('object');
           expect(err instanceof Error).to.equal(true);
           expect(err.data).to.be.a('object');

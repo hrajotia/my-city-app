@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {isEmpty} from 'lodash';
+import { isEmpty } from 'lodash';
 import { connect } from 'react-redux';
-import {IntlProvider } from 'react-intl';
+import { IntlProvider } from 'react-intl';
 
 import { fetchTranslation } from '../actions/appActions';
 
@@ -10,12 +10,12 @@ import App from '../components/App';
 
 class Root extends Component {
   componentDidMount() {
-    const {app} = this.props;
+    const { app } = this.props;
     this.props.fetchTranslation(app.locale);
   }
 
   render() {
-    const {app} = this.props;
+    const { app } = this.props;
     const tranlation = app.translations[app.locale];
 
     if (isEmpty(tranlation)) {
@@ -43,7 +43,7 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchTranslation: (locale) => dispatch(fetchTranslation(locale)),
+    fetchTranslation: (locale) => dispatch(fetchTranslation(locale))
   };
 };
 

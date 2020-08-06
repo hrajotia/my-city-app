@@ -1,17 +1,17 @@
-import {cloneDeep, isPlainObject, isEmpty} from 'lodash';
+import { cloneDeep, isPlainObject, isEmpty } from 'lodash';
 
-import * as types from '../constants/actionTypes';
+import { FETCH_MY_CITIES_PAGINATED, FETCH_MY_CITIES_PAGINATED_SUCCESS, FETCH_MY_CITIES_PAGINATED_FAILURE, DO_LOGOUT } from '../constants/actionTypes';
 import initialState from './initialState';
 
 export default function myCitesReducer(state = cloneDeep(initialState.myCities), action) {
   switch (action.type) {
-    case types.FETCH_MY_CITIES_PAGINATED: {
+    case FETCH_MY_CITIES_PAGINATED: {
       const newState = cloneDeep(state);
       newState.errMsg = '';
       return newState;
     }
 
-    case types.FETCH_MY_CITIES_PAGINATED_SUCCESS: {
+    case FETCH_MY_CITIES_PAGINATED_SUCCESS: {
       const data = isPlainObject(action.data) && action.data && action.data.data;
       const newState = cloneDeep(state);
       if (!isEmpty(data)) {
@@ -24,7 +24,7 @@ export default function myCitesReducer(state = cloneDeep(initialState.myCities),
       return newState;
     }
 
-    case types.FETCH_MY_CITIES_PAGINATED_FAILURE: {
+    case FETCH_MY_CITIES_PAGINATED_FAILURE: {
       const newState = cloneDeep(state);
       if (action.data && action.data.error) {
         newState.errMsg = action.data.error;
@@ -32,6 +32,10 @@ export default function myCitesReducer(state = cloneDeep(initialState.myCities),
         newState.errMsg = 'generic.server_error_msg';
       }
       return newState;
+    }
+
+    case DO_LOGOUT: {
+      return cloneDeep(initialState.myCities);
     }
 
     default:

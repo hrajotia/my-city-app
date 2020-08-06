@@ -5,7 +5,7 @@ describe('assetsTransformer', () => {
   beforeEach(() => {
     global.path = {
       basename: jest.fn()
-    }
+    };
   });
 
   it('should render Header component correctly with props', () => {

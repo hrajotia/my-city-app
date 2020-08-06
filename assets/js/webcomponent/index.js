@@ -26,7 +26,7 @@ render(
 
 if (module.hot) {
   module.hot.accept('./containers/Root', () => {
-    const { AppContainer } = require('react-hot-loader')
+    const { AppContainer } = require('react-hot-loader');
     const NewRoot = require('./containers/Root').default;
 
     render(

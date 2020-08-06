@@ -1,6 +1,6 @@
 'use strict';
 
-import {create, CancelToken} from 'apisauce';
+import { create, CancelToken } from 'apisauce';
 
 import auth from './auth';
 
@@ -28,7 +28,12 @@ api.addMonitor((response) => {
   if (response && ((response.status === 401) || (response.status === 403))) {
     auth.deleteToken();
 
-    window.location.reload();
+    //window.location.reload();
+    if (history.pushState) {
+      history.pushState(null, null, '#');
+    } else {
+      location.hash = '#';
+    }
     return;
   }
 });

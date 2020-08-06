@@ -17,7 +17,7 @@ export default {
       locale = localeMapping[constants.app.defaultLocale];
     }
 
-    date = moment(date).locale(locale)
+    date = moment(date).locale(locale);
     if (date.isValid()) {
       return date.format(format);
     }

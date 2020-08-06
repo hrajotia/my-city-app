@@ -47,4 +47,38 @@ div {
   .my-cities-container {
     margin-top: 10px;
   }
+
+  .header {
+    .nav-item {
+      .header-item {
+        &.profile {
+          display: inline-block;
+
+          .user-img {
+            background-color: rgba(255,255,255,0.0);
+            height: 35px;
+            width: 35px;
+            margin: 0;
+            border-radius: 50%;
+          }
+        }
+      }
+
+      .dropdown-menu {
+        .user-firstname {
+          display: block;
+          width: 100%;
+          padding: .25rem 1.5rem;
+          clear: both;
+          font-weight: 300;
+          font-size: 14px;
+          color: #212529;
+          text-align: inherit;
+          white-space: nowrap;
+          background-color: transparent;
+          border: 0;
+        }
+      }
+    }
+  }
 }

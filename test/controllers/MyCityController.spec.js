@@ -13,6 +13,7 @@ describe('#MyCityController.spec', () => {
     it('Should retrieve all my cities successfully', (done) => {
       request(sails.hooks.http.app)
         .get('/api/v1/mycity?limit=10&skip=0&startDate=2020-07-31&endDate=2020-08-01&price=5&color=#0f4cdb&city=test&status=test')
+        .set('Authorization', sails.config.jwtHeader)
         .expect(200)
         .expect('Content-Type', /json/)
         .end((err, res) => {
@@ -26,11 +27,63 @@ describe('#MyCityController.spec', () => {
         });
     });
 
+    it('Should throw an error when invalid auth strategy provided', (done) => {
+      request(sails.hooks.http.app)
+        .get('/api/v1/mycity?limit=10&skip=0&startDate=2020-07-31&endDate=2020-08-01&price=5&color=#0f4cdb&city=test&status=test')
+        .set('Authorization', 'xxxx ')
+        .expect(403)
+        .expect('Content-Type', /json/)
+        .end((err, res) => {
+          expect(err).to.be.null;
+          expect(res.body).to.have.property('code').to.be.a('string').to.equal('FORBIDDEN');
+          expect(res.body).to.have.property('message').to.be.a('string');
+          expect(res.body).to.have.property('traceId').to.be.a('string');
+          expect(res.body).to.have.property('additionalInfo').to.be.a('array');
+
+          done(err);
+        });
+    });
+
+    it('Should throw an error when auth token not provided', (done) => {
+      request(sails.hooks.http.app)
+        .get('/api/v1/mycity?limit=10&skip=0&startDate=2020-07-31&endDate=2020-08-01&price=5&color=#0f4cdb&city=test&status=test')
+        .set('Authorization', 'Bearer ')
+        .expect(403)
+        .expect('Content-Type', /json/)
+        .end((err, res) => {
+          expect(err).to.be.null;
+          expect(res.body).to.have.property('code').to.be.a('string').to.equal('FORBIDDEN');
+          expect(res.body).to.have.property('message').to.be.a('string');
+          expect(res.body).to.have.property('traceId').to.be.a('string');
+          expect(res.body).to.have.property('additionalInfo').to.be.a('array');
+
+          done(err);
+        });
+    });
+
+    it('Should throw an error when invalid auth token provided', (done) => {
+      request(sails.hooks.http.app)
+        .get('/api/v1/mycity?limit=10&skip=0&startDate=2020-07-31&endDate=2020-08-01&price=5&color=#0f4cdb&city=test&status=test')
+        .set('Authorization', 'Bearer test')
+        .expect(403)
+        .expect('Content-Type', /json/)
+        .end((err, res) => {
+          expect(err).to.be.null;
+          expect(res.body).to.have.property('code').to.be.a('string').to.equal('FORBIDDEN');
+          expect(res.body).to.have.property('message').to.be.a('string');
+          expect(res.body).to.have.property('traceId').to.be.a('string');
+          expect(res.body).to.have.property('additionalInfo').to.be.a('array');
+
+          done(err);
+        });
+    });
+
     it('Should throw an error when unable to get all my cities', (done) => {
       sinon.stub(myCityService, 'getMyCities').rejects(error);
 
       request(sails.hooks.http.app)
         .get('/api/v1/mycity')
+        .set('Authorization', sails.config.jwtHeader)
         .expect(500)
         .expect('Content-Type', /json/)
         .end((err, res) => {
@@ -50,6 +103,7 @@ describe('#MyCityController.spec', () => {
     it('Should paginate all my cities successfully', (done) => {
       request(sails.hooks.http.app)
         .get('/api/v1/mycity/paginate?limit=10&page=0&startDate=2020-07-31&endDate=2020-08-01&price=5&color=#0f4cdb&city=test&status=test')
+        .set('Authorization', sails.config.jwtHeader)
         .expect(200)
         .expect('Content-Type', /json/)
         .end((err, res) => {
@@ -70,6 +124,7 @@ describe('#MyCityController.spec', () => {
 
       request(sails.hooks.http.app)
         .get('/api/v1/mycity/paginate')
+        .set('Authorization', sails.config.jwtHeader)
         .expect(500)
         .expect('Content-Type', /json/)
         .end((err, res) => {
@@ -89,6 +144,7 @@ describe('#MyCityController.spec', () => {
     it('Should create my city successfully', (done) => {
       request(sails.hooks.http.app)
         .post('/api/v1/mycity')
+        .set('Authorization', sails.config.jwtHeader)
         .send({ city: 'test', status: 'test', price: 5, color: '#0f4cdb', startDate: '2020-07-31', endDate: '2020-08-01' })
         .expect(201)
         .expect('Content-Type', /json/)
@@ -108,6 +164,7 @@ describe('#MyCityController.spec', () => {
 
       request(sails.hooks.http.app)
         .post('/api/v1/mycity')
+        .set('Authorization', sails.config.jwtHeader)
         .send({ city: 'test', status: 'test', price: 5, color: '#0f4cdb', startDate: '2020-07-31', endDate: '2020-08-01', sort: 'price ASC' })
         .expect(500)
         .expect('Content-Type', /json/)
@@ -128,6 +185,7 @@ describe('#MyCityController.spec', () => {
     it('Should get my city successfully', (done) => {
       request(sails.hooks.http.app)
         .get('/api/v1/mycity/test')
+        .set('Authorization', sails.config.jwtHeader)
         .expect(200)
         .expect('Content-Type', /json/)
         .end((err, res) => {
@@ -146,6 +204,7 @@ describe('#MyCityController.spec', () => {
 
       request(sails.hooks.http.app)
         .get('/api/v1/mycity/test')
+        .set('Authorization', sails.config.jwtHeader)
         .expect(500)
         .expect('Content-Type', /json/)
         .end((err, res) => {
@@ -165,6 +224,7 @@ describe('#MyCityController.spec', () => {
     it('Should update my city successfully', (done) => {
       request(sails.hooks.http.app)
         .put('/api/v1/mycity/test')
+        .set('Authorization', sails.config.jwtHeader)
         .send({ price: 10 })
         .expect(200)
         .expect('Content-Type', /json/)
@@ -184,6 +244,7 @@ describe('#MyCityController.spec', () => {
 
       request(sails.hooks.http.app)
         .put('/api/v1/mycity/test')
+        .set('Authorization', sails.config.jwtHeader)
         .send({ price: 66 })
         .expect(500)
         .expect('Content-Type', /json/)
@@ -204,6 +265,7 @@ describe('#MyCityController.spec', () => {
     it('Should delete my city successfully', (done) => {
       request(sails.hooks.http.app)
         .delete('/api/v1/mycity/test')
+        .set('Authorization', sails.config.jwtHeader)
         .expect(200)
         .expect('Content-Type', /json/)
         .end((err, res) => {
@@ -222,6 +284,7 @@ describe('#MyCityController.spec', () => {
 
       request(sails.hooks.http.app)
         .delete('/api/v1/mycity/test')
+        .set('Authorization', sails.config.jwtHeader)
         .expect(500)
         .expect('Content-Type', /json/)
         .end((err, res) => {

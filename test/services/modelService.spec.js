@@ -7,7 +7,7 @@ describe('#modelService', () => {
 
   describe('#sanitizeFindParameter', () => {
     it('should provide sort parameter as array', (done) => {
-      const val = modelService.sanitizeFindParameter({ sort: [ { price: 'ASC' }, { color: 'DESC'} ]});
+      const val = modelService.sanitizeFindParameter({ sort: [{ price: 'ASC' }, { color: 'DESC' }] });
 
       expect(val).to.be.a('object');
       expect(val.sort).to.be.a('array');
@@ -16,7 +16,7 @@ describe('#modelService', () => {
     });
 
     it('should provide select parameter as array', (done) => {
-      const val = modelService.sanitizeFindParameter({ select: [ 'price', 'color' ]});
+      const val = modelService.sanitizeFindParameter({ select: ['price', 'color'] });
 
       expect(val).to.be.a('object');
       expect(val.select).to.be.a('array');

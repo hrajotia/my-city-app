@@ -1,27 +1,66 @@
-import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
+import React, { Component, Fragment } from 'react';
+import PropTypes from 'prop-types';
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
+import NavDropdown from 'react-bootstrap/NavDropdown';
 
 class Header extends Component {
   render() {
+    const { user } = this.props;
+    const firstname = (user && user.firstname) || '';
+
     return (
       <header className='header'>
-        <nav className='navbar navbar-expand-lg navbar-light bg-light'>
-          <a className='navbar-brand' href='#'>MyCity</a>
-          <button className='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'>
-            <span className='navbar-toggler-icon' />
-          </button>
-
-          <div className='collapse navbar-collapse' id='navbarSupportedContent'>
-            <ul className='navbar-nav mr-auto'>
-              <li className='nav-item active'>
-                <Link className='nav-link' to='/'>Home <span className='sr-only'>(current)</span></Link>
-              </li>
-            </ul>
-          </div>
-        </nav>
+        <Navbar bg='light' expand='lg'>
+          <Navbar.Brand href='#'>MyCity</Navbar.Brand>
+          <Navbar.Toggle aria-controls='responsive-navbar-nav' />
+          <Navbar.Collapse id='responsive-navbar-nav'>
+            <Nav className='mr-auto'>
+              {
+                firstname && (
+                  <Fragment>
+                    <Nav.Link href='#mycities'>Home</Nav.Link>
+                  </Fragment>
+                )
+              }
+            </Nav>
+            <Nav>
+              <NavDropdown title={this.renderProfile()} id='collasible-nav-dropdown' alignRight>
+                {
+                  firstname ? (
+                    <Fragment>
+                      <div className='user-firstname'>
+                        {firstname}
+                      </div>
+                      <NavDropdown.Item href='#logout'>Logout</NavDropdown.Item>
+                    </Fragment>
+                  ) : (
+                    <Fragment>
+                      <NavDropdown.Item href='#login'>Login</NavDropdown.Item>
+                      <NavDropdown.Item href='#signup'>Signup</NavDropdown.Item>
+                    </Fragment>
+                  )
+                }
+              </NavDropdown>
+            </Nav>
+          </Navbar.Collapse>
+        </Navbar>
       </header>
     );
   }
+
+  renderProfile() {
+    const { user } = this.props;
+    return (
+      <div className='header-item profile'>
+        <img src={(user && user.imageUrl) ? user.imageUrl : require('../../../images/user-icon-grey.jpg')} className='user-img' />
+      </div>
+    );
+  }
 }
+
+Header.propTypes = {
+  user: PropTypes.object
+};
 
 export default Header;

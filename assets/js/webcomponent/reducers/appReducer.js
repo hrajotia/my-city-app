@@ -1,11 +1,11 @@
-import {cloneDeep, isEmpty} from 'lodash';
+import { cloneDeep, isEmpty } from 'lodash';
 
-import * as types from '../constants/actionTypes';
+import { FETCH_TRANSLATIONS_SUCCESS } from '../constants/actionTypes';
 import initialState from './initialState';
 
 export default function appReducer(state = cloneDeep(initialState.app), action) {
   switch (action.type) {
-    case types.FETCH_TRANSLATIONS_SUCCESS: {
+    case FETCH_TRANSLATIONS_SUCCESS: {
       const newState = cloneDeep(state);
       const locale = action.payload && action.payload.locale;
       const translation = action.data && action.data.data;

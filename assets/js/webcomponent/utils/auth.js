@@ -1,37 +1,47 @@
 'use strict';
 
+import { isPlainObject, isEmpty } from 'lodash';
 import browserStorage from './browserStorage';
 
-const token_key = 'mycity_v1_token';
+const userKey = 'mycity_v1_user';
 
 class Auth {
 
   constructor() {
-    this.token = '';
+    this.user = {};
   }
 
   isAuthenticated() {
-    return !!this.token;
+    return !!this.getToken();
   }
 
   getToken() {
-    if (this.token) {
-      return this.token;
+    return this.getUser().token || null;
+  }
+
+  getUser() {
+    if (!isEmpty(this.user)) {
+      return this.user;
     }
 
-    this.token = browserStorage.getItem(token_key);
-    return this.token;
+    try {
+      const user = JSON.parse(browserStorage.getItem(userKey));
+      if (isPlainObject(user)) {
+        this.user = user;
+      }
+    } catch (e) {}
+
+    return this.user || {};
   }
 
-  setToken(token) {
-    this.token = token || '';
-    browserStorage.setItem(token_key, this.token);
+  setUser(user) {
+    this.user = isPlainObject(user) ? user : {};
+    browserStorage.setItem(userKey, JSON.stringify(this.user));
   }
 
-  deleteToken() {
-    this.token = null;
-
-    browserStorage.removeItem(token_key);
+  deleteUser() {
+    this.user = null;
+    browserStorage.removeItem(userKey);
   }
 
 }
@@ -39,10 +49,9 @@ class Auth {
 const auth = new Auth();
 
 (() => {
-  const token = auth.getToken();
-
-  if (token) {
-    auth.setToken(token);
+  const user = auth.getUser();
+  if (isPlainObject(user)) {
+    auth.setUser(user);
   }
 })();
 

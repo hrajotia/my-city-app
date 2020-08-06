@@ -8,6 +8,8 @@
  * https://sailsjs.com/anatomy/config/routes-js
  */
 
+const authService = require('../api/services/authService');
+
 module.exports.routes = {
 
   /***************************************************************************
@@ -19,7 +21,8 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  '/': { view: 'pages/homepage' },
+  'GET /': { view: 'pages/homepage' },
+  'GET /login': { view: 'pages/login' },
 
   /***************************************************************************
   *                                                                          *
@@ -33,6 +36,11 @@ module.exports.routes = {
   ***************************************************************************/
 
   'GET /api/v1/healthcheck': 'HealthcheckController.healthCheck',
+
+  // Auth
+  'POST /api/v1/login': [authService.validateLoginPayload(), 'AuthController.login'],
+  'POST /api/v1/signup': [authService.validateSignupPayload(), 'AuthController.signup'],
+  'POST /api/v1/logout': 'AuthController.logout',
 
   // Locale
   'GET /api/v1/translation': 'LocaleController.getTranslation',

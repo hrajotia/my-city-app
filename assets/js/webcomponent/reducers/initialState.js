@@ -5,7 +5,35 @@ export default {
     locale: constants.app.defaultLocale,
     translations: {
       [constants.app.defaultLocale]: {}
+    }
+  },
+  user: {
+    data: {
+      token: '',
+      username: '',
+      email: '',
+      firstname: '',
+      lastname: ''
     },
+    login: {
+      data: {
+        username: '',
+        password: ''
+      },
+      errMsg: '',
+      errors: {}
+    },
+    signup: {
+      data: {
+        firstname: '',
+        lastname: '',
+        email: '',
+        username: '',
+        password: ''
+      },
+      errMsg: '',
+      errors: {}
+    }
   },
   myCities: {
     errMsg: '',

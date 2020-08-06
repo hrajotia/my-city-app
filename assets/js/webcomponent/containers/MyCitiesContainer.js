@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
-import {FormattedMessage} from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import DatePicker from 'react-datepicker';
 
@@ -44,7 +44,7 @@ export class MyCitiesContainer extends React.Component {
   }
 
   render() {
-    const {myCities} = this.props;
+    const { myCities } = this.props;
 
     return (
       <div className='container my-cities-container'>
@@ -64,11 +64,11 @@ export class MyCitiesContainer extends React.Component {
         </div>
         {this.renderDeleteConfirmModal()}
       </div>
-    )
+    );
   }
 
   renderDateFilter() {
-    const {startDate, endDate} = this.state;
+    const { startDate, endDate } = this.state;
 
     return (
       <Form>
@@ -116,7 +116,12 @@ export class MyCitiesContainer extends React.Component {
             <FormattedMessage id='generic.actions.search'>
               {
                 title => (
-                  <Button className='mb-2 search-icon' title={title} onClick={this.handleOnClickSearch} tabIndex={0}>
+                  <Button
+                    className='mb-2 search-icon'
+                    title={title}
+                    onClick={this.handleOnClickSearch}
+                    tabIndex={0}
+                  >
                     <FontAwesomeIcon icon='search' />
                   </Button>
                 )
@@ -129,7 +134,7 @@ export class MyCitiesContainer extends React.Component {
   }
 
   renderDeleteConfirmModal() {
-    const {deleteMyCity} = this.props;
+    const { deleteMyCity } = this.props;
     const _this = this;
 
     if (!this.state.showDeleteModal) {
@@ -220,7 +225,7 @@ export class MyCitiesContainer extends React.Component {
           </Fragment>
         );
       },
-      sort: true,
+      sort: true
     }, {
       dataField: 'color',
       text: '',
@@ -247,9 +252,13 @@ export class MyCitiesContainer extends React.Component {
   }
 
   sortCaret(order) {
-    if (!order) return (<span className='order'><span className='dropdown'><span className='caret' /></span><span className='dropup'><span className='caret' /></span></span>);
-    else if (order === 'asc') return (<span className='react-bootstrap-table-sort-order'><span className='caret' /></span>);
-    else if (order === 'desc') return (<span className='react-bootstrap-table-sort-order dropup'><span className='caret' /></span>);
+    if (!order) {
+      return (<span className='order'><span className='dropdown'><span className='caret' /></span><span className='dropup'><span className='caret' /></span></span>);
+    } else if (order === 'asc') {
+      return (<span className='react-bootstrap-table-sort-order'><span className='caret' /></span>);
+    } else if (order === 'desc') {
+      return (<span className='react-bootstrap-table-sort-order dropup'><span className='caret' /></span>);
+    }
     return null;
   }
 
@@ -295,7 +304,7 @@ export class MyCitiesContainer extends React.Component {
     );
   }
 
-  handleTableChange(type, { page, sizePerPage, sortField, sortOrder, }) {
+  handleTableChange(type, { page, sizePerPage, sortField, sortOrder }) {
     this.fetchMyCitiesPaginated(page, sizePerPage, sortField, sortOrder);
   }
 
@@ -319,15 +328,15 @@ export class MyCitiesContainer extends React.Component {
   }
 
   handleOnClickSearch() {
-    const {startDate, endDate} = this.state;
+    const { startDate, endDate } = this.state;
     if (startDate && endDate) {
       this.fetchMyCitiesPaginated();
     }
   }
 
   fetchMyCitiesPaginated(page, perPage, sortField, sortOrder) {
-    const {myCities} = this.props;
-    const {startDate, endDate} = this.state;
+    const { myCities } = this.props;
+    const { startDate, endDate } = this.state;
     page = page || myCities.paginated.page;
     perPage = perPage || myCities.paginated.perPage;
     const sort = ((sortField && sortOrder) && `${sortField} ${sortOrder.toLocaleUpperCase()}`) || myCities.paginated.sort;
@@ -357,7 +366,8 @@ export function mapStateToProps(state) {
 
 export const mapDispatchToProps = (dispatch) => {
   return {
-    fetchMyCitiesPaginated: (page, perPage, sort, startDate, endDate) => dispatch(fetchMyCitiesPaginated(page, perPage, sort, startDate, endDate)),
+    fetchMyCitiesPaginated: (page, perPage, sort, startDate, endDate) =>
+      dispatch(fetchMyCitiesPaginated(page, perPage, sort, startDate, endDate)),
     deleteMyCity: (id) => dispatch(deleteMyCity(id))
   };
 };

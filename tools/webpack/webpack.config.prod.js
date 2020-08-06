@@ -37,10 +37,10 @@ export default merge(common, {
           compress: {
             ecma: 5,
             warnings: false,
-            comparisons: false,
+            comparisons: false
           },
           mangle: {
-            safari10: true,
+            safari10: true
           },
           output: {
             ecma: 5,
@@ -49,7 +49,7 @@ export default merge(common, {
           }
         },
         cache: true,
-        sourceMap: true,
+        sourceMap: true
       })
     ]
   },
@@ -87,16 +87,16 @@ export default merge(common, {
       fileName: 'asset-manifest.json',
       publicPath: publicPath,
       generate: (seed, files) => {
-        const manifestFiles = files.reduce(function(manifest, file) {
+        const manifestFiles = files.reduce((manifest, file) => {
           manifest[file.name] = file.path;
           return manifest;
         }, seed);
 
         return {
-          files: manifestFiles,
+          files: manifestFiles
         };
       }
     }),
-    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
   ]
 });

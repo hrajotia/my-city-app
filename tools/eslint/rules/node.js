@@ -26,7 +26,7 @@ module.exports = {
    * 'error' or 2 - turn the rule on as an error (exit code is 1 when triggered)
    */
   rules: {
-    'prefer-arrow-callback': [1, {allowNamedFunctions: true}],
+    'prefer-arrow-callback': [1, { allowNamedFunctions: true }],
     'prefer-promise-reject-errors': [
       0,
       { allowEmptyReject: true }
@@ -34,6 +34,7 @@ module.exports = {
     'no-throw-literal': 2,
     'no-void': 2,
     'no-unused-labels': 2,
+    'no-setter-return': 1,
     'no-self-compare': 2,
     'no-self-assign': 2,
     'no-script-url': 2,
@@ -44,6 +45,7 @@ module.exports = {
       { builtinGlobals: true }
     ],
     'no-lone-blocks': 2,
+    'no-import-assign': 1,
     'no-implied-eval': 2,
     'no-implicit-globals': 0,
     'dot-notation': [
@@ -60,7 +62,7 @@ module.exports = {
       'all'
     ],
     'class-methods-use-this': [
-      2,
+      0,
       { exceptMethods: [] }
     ],
     'block-scoped-var': 2,
@@ -82,7 +84,7 @@ module.exports = {
         functions: false
       }
     ],
-    quotes: [1, 'single', {avoidEscape:false, allowTemplateLiterals:true}],
+    quotes: [1, 'single', { avoidEscape: false, allowTemplateLiterals: true }],
     'no-undef': 2,
     'no-unexpected-multiline': 1,
     'no-unreachable': 1,
@@ -214,9 +216,9 @@ module.exports = {
       2, {
         SwitchCase: 1,
         MemberExpression: 'off',
-        FunctionDeclaration: {'body':1, 'parameters':'off'},
-        FunctionExpression: {'body':1, 'parameters':'off'},
-        CallExpression: {'arguments':'off'},
+        FunctionDeclaration: { body: 1, parameters: 'off' },
+        FunctionExpression: { body: 1, parameters: 'off' },
+        CallExpression: { arguments: 'off' },
         ArrayExpression: 1,
         ObjectExpression: 1,
         ignoredNodes: ['ConditionalExpression']
@@ -224,6 +226,7 @@ module.exports = {
     ],
     'no-dupe-keys': 2,
     'no-duplicate-case': 2,
+    'no-dupe-else-if': 1,
     'no-extra-semi': 1,
     'no-labels': 2,
     'no-irregular-whitespace': [2, { skipComments: true }],
@@ -310,7 +313,7 @@ module.exports = {
     'filenames/match-exported': ['off', { // will re-enable this when PR is accepted
       transform: 'snake'
     }],
-    'filenames/match-regex': ['error', /^[A-Za-z0-9_\.]+$/],
+    'filenames/match-regex': ['error', /^[A-Za-z0-9_.]+$/],
     'filenames/no-index': 'off',
     // security
     'security/detect-buffer-noassert': 'warn',

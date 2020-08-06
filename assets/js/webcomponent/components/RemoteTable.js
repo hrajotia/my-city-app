@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import BootstrapTable from 'react-bootstrap-table-next';
 import paginationFactory from 'react-bootstrap-table2-paginator';
-import {FormattedMessage} from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 import 'react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css';
@@ -20,16 +20,16 @@ const paginationConfig = {
 };
 
 const RemoteTable = (props) => {
-  const {page, sizePerPage, totalSize} = props;
+  const { page, sizePerPage, totalSize } = props;
 
   return (
     <BootstrapTable
       remote
       noDataIndication={() => (<div><FormattedMessage id='table.no_data' /></div>)}
-      pagination={paginationFactory({ ...paginationConfig, page, sizePerPage, totalSize})}
+      pagination={paginationFactory({ ...paginationConfig, page, sizePerPage, totalSize })}
       {...props}
     />
-  )
+  );
 };
 
 RemoteTable.propTypes = {

@@ -12,7 +12,10 @@ docker-compose up
 Or: (docker-compose build && docker-compose up)
 ```
 3. Open your web browser to http://localhost:3000/
-
+4. If a login page is presented then use below credentials to login -
+   - username: test
+   - password: test
+5. Or you can create new user by navigating to signup page.
 
 ### Features
 

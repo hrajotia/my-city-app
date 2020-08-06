@@ -12,7 +12,7 @@ describe('#LocaleController', () => {
     it('Should retrieve translation successfully', (done) => {
       request.agent(sails.hooks.http.app)
         .get('/api/v1/translation')
-        .query({locale: 'en'})
+        .query({ locale: 'en' })
         .expect(200)
         .expect('Content-Type', /json/)
         .end((err, res) => {
@@ -29,7 +29,7 @@ describe('#LocaleController', () => {
     it('Should retrieve fallback translation for random locale rsuccessfully', (done) => {
       request.agent(sails.hooks.http.app)
         .get('/api/v1/translation')
-        .query({locale: 'xxxx'})
+        .query({ locale: 'xxxx' })
         .expect(200)
         .expect('Content-Type', /json/)
         .end((err, res) => {
@@ -48,7 +48,7 @@ describe('#LocaleController', () => {
 
       request.agent(sails.hooks.http.app)
         .get('/api/v1/translation')
-        .query({locale: 'xxxx'})
+        .query({ locale: 'xxxx' })
         .expect(500)
         .expect('Content-Type', /json/)
         .end((err, res) => {

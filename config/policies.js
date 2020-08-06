@@ -22,17 +22,20 @@ module.exports.policies = {
   HealthcheckController: {
     healthCheck: true
   },
+  AuthController: {
+    login: true,
+    logout: true
+  },
   LocaleController: {
     getTranslation: true
   },
   MyCityController: {
-    getAllMyCity: true,
-    getAllMyCityPaginated: true,
-    createMyCity: true,
-    getMyCity: true,
-    updateMyCity: true,
-    deleteMyCity: true
-
+    getAllMyCity: ['isJWTAuthenticated'],
+    getAllMyCityPaginated: ['isJWTAuthenticated'],
+    createMyCity: ['isJWTAuthenticated'],
+    getMyCity: ['isJWTAuthenticated'],
+    updateMyCity: ['isJWTAuthenticated'],
+    deleteMyCity: ['isJWTAuthenticated']
   }
 
 };

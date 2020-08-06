@@ -1,9 +1,9 @@
-import * as types from '../constants/actionTypes';
+import { UPDATE_MY_CITY_PROPERTY, VALIDATE_MY_CITY_PROPERTY, RESET_MY_CITY_DATA, FETCH_MY_CITIES, FETCH_MY_CITIES_PAGINATED, DELETE_MY_CITY } from '../constants/actionTypes';
 import { REQUEST, sendRequest } from '../utils/networkUtils';
 
 export const updateMyCityProperty = (field, value) => {
   return {
-    type: types.UPDATE_MY_CITY_PROPERTY,
+    type: UPDATE_MY_CITY_PROPERTY,
     field,
     value
   };
@@ -11,7 +11,7 @@ export const updateMyCityProperty = (field, value) => {
 
 export const validateMyCityProperty = (field, value) => {
   return {
-    type: types.VALIDATE_MY_CITY_PROPERTY,
+    type: VALIDATE_MY_CITY_PROPERTY,
     field,
     value
   };
@@ -19,19 +19,19 @@ export const validateMyCityProperty = (field, value) => {
 
 export const resetMyCityData = (fields) => {
   return {
-    type: types.RESET_MY_CITY_DATA,
+    type: RESET_MY_CITY_DATA,
     fields
   };
 };
 
 export const fetchMyCities = (limit = 10) => {
-  return sendRequest(types.FETCH_MY_CITIES, REQUEST.GET, `/mycity?limit=${limit}`);
+  return sendRequest(FETCH_MY_CITIES, REQUEST.GET, `/mycity?limit=${limit}`);
 };
 
 export const fetchMyCitiesPaginated = (page, limit, sort, startDate, endDate) => {
-  return sendRequest(types.FETCH_MY_CITIES_PAGINATED, REQUEST.GET, `/mycity/paginate?page=${page}&limit=${limit}&sort=${sort}${startDate ? `&startDate=${startDate}` : ''}${endDate ? `&endDate=${endDate}` : ''}`);
+  return sendRequest(FETCH_MY_CITIES_PAGINATED, REQUEST.GET, `/mycity/paginate?page=${page}&limit=${limit}&sort=${sort}${startDate ? `&startDate=${startDate}` : ''}${endDate ? `&endDate=${endDate}` : ''}`);
 };
 
 export const deleteMyCity = (id) => {
-  return sendRequest(types.DELETE_MY_CITY, REQUEST.DELETE, `/mycity/${id}`);
+  return sendRequest(DELETE_MY_CITY, REQUEST.DELETE, `/mycity/${id}`);
 };

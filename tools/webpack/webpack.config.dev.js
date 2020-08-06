@@ -32,6 +32,6 @@ export default merge(common, {
         collapseWhitespace: true
       },
       inject: true
-    }),
+    })
   ]
 });

@@ -9,6 +9,8 @@
  * https://sailsjs.com/config/http
  */
 
+const passport = require('passport');
+
 module.exports.http = {
 
   /****************************************************************************
@@ -33,6 +35,8 @@ module.exports.http = {
       'xssHeader',
       'cookieParser',
       'session',
+      'passportInit',
+      'passportSession',
       'bodyParser',
       'compress',
       'disablePoweredBy',
@@ -40,6 +44,9 @@ module.exports.http = {
       'www',
       'favicon'
     ],
+
+    passportInit: passport.initialize(),
+    passportSession: passport.session(),
 
     /***************************************************************************
     *                                                                          *

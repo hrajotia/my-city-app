@@ -19,7 +19,7 @@ export const sendRequest = function(action, method, url, data, config, actionDat
     config = extend({}, config, { headers: { Authorization: `Bearer ${token}` } });
   }
 
-  switch(method) {
+  switch (method) {
     case REQUEST.HEAD:
     case REQUEST.GET:
     case REQUEST.POST:
@@ -29,7 +29,7 @@ export const sendRequest = function(action, method, url, data, config, actionDat
       return wrapCall(
         api[method](url, data, config),
         action,
-        {payload: data, actionData}
+        { payload: data, actionData }
       );
     }
   }

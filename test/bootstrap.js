@@ -30,6 +30,7 @@ before(function(done) {
       moduleDefinitions: {
       }
     },
+    jwtHeader: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJuYW1lIjoidGVzdCIsImVtYWlsIjoidGVzdEB0ZXN0LnRlc3QiLCJmaXJzdG5hbWUiOiJUZXN0RiIsImxhc3RuYW1lIjoiVGVzdEwifSwiaWF0IjoxNTk2NjQ0MTYwLCJhdWQiOiJteWNpdHlhcHAuY29tIiwiaXNzIjoibXljaXR5YXBwLmNvbSJ9.rBC5dj_AmfkYUuQQZw8yGUg6tJ1X6Ncsk5NSZaY6_es',
     api: {
     }
   };
@@ -43,7 +44,7 @@ before(function(done) {
     }
 
     const fixted = new Fixted(process.cwd() + '/test/fixtures');
-    const loadOrder = ['status', 'city', 'mycity'];
+    const loadOrder = ['user', 'status', 'city', 'mycity'];
     fixted.populate(loadOrder, (err) => {
       done(err);
     });
