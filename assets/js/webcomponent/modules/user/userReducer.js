@@ -1,9 +1,37 @@
 import { cloneDeep, extend, isPlainObject, isEmpty, isArray } from 'lodash';
 
-import { UPDATE_LOGIN_ATTR, DO_LOGIN, DO_LOGIN_SUCCESS, DO_LOGIN_FAILURE, UPDATE_SIGNUP_ATTR, DO_SIGNUP, DO_SIGNUP_SUCCESS, DO_SIGNUP_FAILURE, DO_LOGOUT } from '../constants/actionTypes';
-import auth from '../utils/auth';
-import { history } from '../store/configureStore';
-import initialState from './initialState';
+import { UPDATE_LOGIN_ATTR, DO_LOGIN, DO_LOGIN_SUCCESS, DO_LOGIN_FAILURE, UPDATE_SIGNUP_ATTR, DO_SIGNUP, DO_SIGNUP_SUCCESS, DO_SIGNUP_FAILURE, DO_LOGOUT } from '../../constants/actionTypes';
+import auth from '../../utils/auth';
+import { history } from '../../store/configureStore';
+
+const initialState = {
+  data: {
+    token: '',
+    username: '',
+    email: '',
+    firstname: '',
+    lastname: ''
+  },
+  login: {
+    data: {
+      username: '',
+      password: ''
+    },
+    errMsg: '',
+    errors: {}
+  },
+  signup: {
+    data: {
+      firstname: '',
+      lastname: '',
+      email: '',
+      username: '',
+      password: ''
+    },
+    errMsg: '',
+    errors: {}
+  }
+};
 
 const getInitialState = (user) => {
   user = cloneDeep(user);
@@ -14,7 +42,7 @@ const getInitialState = (user) => {
   return user;
 };
 
-export default function appReducer(state = getInitialState(initialState.user), action) {
+export default function appReducer(state = getInitialState(initialState), action) {
   switch (action.type) {
     case UPDATE_LOGIN_ATTR: {
       const newState = cloneDeep(state);
@@ -23,7 +51,7 @@ export default function appReducer(state = getInitialState(initialState.user), a
     }
 
     case DO_LOGIN: {
-      const newState = cloneDeep(initialState.user);
+      const newState = cloneDeep(initialState);
       newState.login.data = state.login.data;
       return newState;
     }
@@ -32,9 +60,9 @@ export default function appReducer(state = getInitialState(initialState.user), a
       const newState = cloneDeep(state);
       const data = action.data && action.data.data;
       if (!isEmpty(data) && isPlainObject(data)) {
-        newState.data = extend(cloneDeep(initialState.user.data), { token: data.token }, data.user);
+        newState.data = extend(cloneDeep(initialState.data), { token: data.token }, data.user);
         auth.setUser(newState.data);
-        newState.login = cloneDeep(initialState.user.login);
+        newState.login = cloneDeep(initialState.login);
         setTimeout(() => {
           history.push('/');
         }, 200);
@@ -64,7 +92,7 @@ export default function appReducer(state = getInitialState(initialState.user), a
     }
 
     case DO_SIGNUP: {
-      const newState = cloneDeep(initialState.user);
+      const newState = cloneDeep(initialState);
       newState.signup.data = state.signup.data;
       return newState;
     }
@@ -73,7 +101,7 @@ export default function appReducer(state = getInitialState(initialState.user), a
       const newState = cloneDeep(state);
       const data = action.data && action.data.data;
       if (!isEmpty(data) && isPlainObject(data)) {
-        newState.signup = cloneDeep(initialState.user.signup);
+        newState.signup = cloneDeep(initialState.signup);
         setTimeout(() => {
           history.push('/login');
         }, 200);
@@ -97,7 +125,7 @@ export default function appReducer(state = getInitialState(initialState.user), a
     }
 
     case DO_LOGOUT: {
-      return cloneDeep(initialState.user);
+      return cloneDeep(initialState);
     }
 
     default:

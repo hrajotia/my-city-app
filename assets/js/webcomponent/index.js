@@ -8,7 +8,7 @@ import { faTrashAlt, faPencilAlt, faSearch } from '@fortawesome/free-solid-svg-i
 import '../../styles/styles.scss';
 
 import configureStore, { history } from './store/configureStore';
-import Root from './containers/Root';
+import App from './modules/app/components/App';
 
 library.add([faTrashAlt, faPencilAlt, faSearch]);
 require('../../images/favicon.ico');
@@ -18,22 +18,22 @@ const store = configureStore();
 render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
-      <Root />
+      <App />
     </ConnectedRouter>
   </Provider>,
   document.getElementById('app')
 );
 
 if (module.hot) {
-  module.hot.accept('./containers/Root', () => {
+  module.hot.accept('./modules/app/components/App', () => {
     const { AppContainer } = require('react-hot-loader');
-    const NewRoot = require('./containers/Root').default;
+    const NewApp = require('./modules/app/components/App').default;
 
     render(
       <Provider store={store}>
         <AppContainer>
           <ConnectedRouter history={history}>
-            <NewRoot store={store} history={history} />
+            <NewApp store={store} history={history} />
           </ConnectedRouter>
         </AppContainer>
       </Provider>,

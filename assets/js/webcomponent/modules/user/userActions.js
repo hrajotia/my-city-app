@@ -1,5 +1,5 @@
-import { UPDATE_LOGIN_ATTR, DO_LOGIN, UPDATE_SIGNUP_ATTR, DO_SIGNUP, DO_LOGOUT } from '../constants/actionTypes';
-import { REQUEST, sendRequest } from '../utils/networkUtils';
+import { UPDATE_LOGIN_ATTR, DO_LOGIN, UPDATE_SIGNUP_ATTR, DO_SIGNUP, DO_LOGOUT } from '../../constants/actionTypes';
+import { REQUEST, sendRequest } from '../../utils/networkUtils';
 
 export const updateLoginAttr = (field, value) => {
   return {

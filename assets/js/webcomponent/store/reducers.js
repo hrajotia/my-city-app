@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 import { connectRouter } from 'connected-react-router';
 
-import app from './appReducer';
-import user from './userReducer';
-import myCities from './myCitesReducer';
+import app from '../modules/app/appReducer';
+import user from '../modules/user/userReducer';
+import myCities from '../modules/mycity/myCitesReducer';
 
 const rootReducer = (history) => combineReducers({
   router: connectRouter(history),

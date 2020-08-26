@@ -29,6 +29,12 @@ module.exports.policies = {
   LocaleController: {
     getTranslation: true
   },
+  CityController: {
+    getAllCity: ['isJWTAuthenticated']
+  },
+  StatusController: {
+    getAllStatus: ['isJWTAuthenticated']
+  },
   MyCityController: {
     getAllMyCity: ['isJWTAuthenticated'],
     getAllMyCityPaginated: ['isJWTAuthenticated'],

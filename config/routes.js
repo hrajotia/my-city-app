@@ -45,6 +45,12 @@ module.exports.routes = {
   // Locale
   'GET /api/v1/translation': 'LocaleController.getTranslation',
 
+  // City
+  'GET /api/v1/city': 'CityController.getAllCity',
+
+  // Status
+  'GET /api/v1/status': 'StatusController.getAllStatus',
+
   // MyCity
   'GET /api/v1/mycity': 'MyCityController.getAllMyCity',
   'GET /api/v1/mycity/paginate': 'MyCityController.getAllMyCityPaginated',

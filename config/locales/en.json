@@ -1,11 +1,11 @@
 {
   "generic.actions": "Actions",
+  "generic.actions.edit": "Edit",
   "generic.actions.delete": "Delete",
   "generic.actions.search": "Search",
+  "generic.actions.save": "Save",
   "generic.ok": "Ok",
   "generic.cancel": "Cancel",
-  "generic.start_date": "Start Date",
-  "generic.end_date": "End Date",
   "generic.bad_request_msg": "The request contain bad parameter",
   "generic.created_msg": "Successfully created the resource",
   "": "The request resource have conflicts",
@@ -37,5 +37,6 @@
   "mycity.prop.end_date": "End Date",
   "mycity.prop.price": "Price",
   "mycity.prop.color": "Color",
+  "mycity.confirm_save_msg": "Are you sure you want to save this?",
   "mycity.confirm_delete_msg": "Are you sure you want to delete it? You are not able to restore it later."
 }

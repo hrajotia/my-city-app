@@ -38,6 +38,7 @@ module.exports = {
       }).then((results) => {
         return res.ok({ data: results });
       }).catch((err) => {
+        sails.log.error('Error occurred while getting my cities', err);
         return res.serverError(err);
       });
   },
@@ -74,6 +75,7 @@ module.exports = {
       }).then((results) => {
         return res.ok({ data: results });
       }).catch((err) => {
+        sails.log.error('Error occurred while getting my cities paginated', err);
         return res.serverError(err);
       });
   },
@@ -102,6 +104,7 @@ module.exports = {
       }).then((results) => {
         return res.created({ data: results });
       }).catch((err) => {
+        sails.log.error('Error occurred while creating my city', err);
         return res.serverError(err);
       });
   },
@@ -135,6 +138,7 @@ module.exports = {
       .then((result) => {
         return res.ok({ data: result });
       }).catch((err) => {
+        sails.log.error('Error occurred while getting my city', err);
         return res.serverError(err);
       });
   },
@@ -173,6 +177,7 @@ module.exports = {
       }).then((results) => {
         return res.ok({ data: results });
       }).catch((err) => {
+        sails.log.error('Error occurred while updating my city', err);
         return res.serverError(err);
       });
   },
@@ -206,6 +211,7 @@ module.exports = {
       .then((result) => {
         return res.ok({ data: result });
       }).catch((err) => {
+        sails.log.error('Error occurred while deleting my city', err);
         return res.serverError(err);
       });
   }

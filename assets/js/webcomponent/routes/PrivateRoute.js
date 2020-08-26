@@ -11,7 +11,7 @@ export default function PrivateRoute({ ...rest }) {
     <Route
       {...rest}
       render={(props) => isAuthed === true
-        ? <Redirect to={{ pathname: rest.defaultHomePath || '/home', state: { from: props.location } }} />
+        ? <Redirect to={{ pathname: rest.defaultHomePath || '/mycities', state: { from: props.location } }} />
         : <Redirect to={{ pathname: '/logout', state: { from: props.location } }} />}
     />
   );

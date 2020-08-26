@@ -10,15 +10,15 @@ import DatePicker from 'react-datepicker';
 
 import 'react-datepicker/dist/react-datepicker.css';
 
-import ConfirmModal from '../components/ConfirmModal';
-import RemoteTable from '../components/RemoteTable';
-import dateUtil from '../utils/dateUtil';
-import constants from '../constants';
+import ConfirmModal from '../../../components/ConfirmModal';
+import RemoteTable from '../../../components/RemoteTable';
+import dateUtil from '../../../utils/dateUtil';
+import constants from '../../../constants';
 
 import {
   fetchMyCitiesPaginated,
   deleteMyCity
-} from '../actions/myCityActions';
+} from '../myCityActions';
 
 export class MyCitiesContainer extends React.Component {
   constructor(props) {
@@ -36,6 +36,7 @@ export class MyCitiesContainer extends React.Component {
     this.handleOnClickSearch = this.handleOnClickSearch.bind(this);
     this.actionCellFormatter = this.actionCellFormatter.bind(this);
     this.handleTableChange = this.handleTableChange.bind(this);
+    this.onClickEditItem = this.onClickEditItem.bind(this);
     this.onClickDeleteItem = this.onClickDeleteItem.bind(this);
   }
 
@@ -75,7 +76,7 @@ export class MyCitiesContainer extends React.Component {
         <Form.Row className='justify-content-end'>
           <Col xs='auto'>
             <Form.Label htmlFor='startDate' srOnly>
-              <FormattedMessage id='generic.start_date' />
+              <FormattedMessage id='mycity.prop.start_date' />
             </Form.Label>
             <DatePicker
               id='startDate'
@@ -95,7 +96,7 @@ export class MyCitiesContainer extends React.Component {
 
           <Col xs='auto'>
             <Form.Label htmlFor='endDate' srOnly>
-              <FormattedMessage id='generic.end_date' />
+              <FormattedMessage id='mycity.prop.end_date' />
             </Form.Label>
             <DatePicker
               id='endDate'
@@ -291,6 +292,15 @@ export class MyCitiesContainer extends React.Component {
   actionCellFormatter(cell, row) {
     return (
       <div className='actions'>
+        <FormattedMessage id='generic.actions.edit'>
+          {
+            title => (
+              <div className='action-icon edit-icon' title={title} onClick={() => this.onClickEditItem(row)} tabIndex={0}>
+                <FontAwesomeIcon icon='pencil-alt' />
+              </div>
+            )
+          }
+        </FormattedMessage>
         <FormattedMessage id='generic.actions.delete'>
           {
             title => (
@@ -306,6 +316,10 @@ export class MyCitiesContainer extends React.Component {
 
   handleTableChange(type, { page, sizePerPage, sortField, sortOrder }) {
     this.fetchMyCitiesPaginated(page, sizePerPage, sortField, sortOrder);
+  }
+
+  onClickEditItem(row) {
+    this.props.history.push(`/mycities/${row.id}`);
   }
 
   onClickDeleteItem(row) {
@@ -352,6 +366,7 @@ export class MyCitiesContainer extends React.Component {
 }
 
 MyCitiesContainer.propTypes = {
+  history: PropTypes.object,
   myCities: PropTypes.object,
   fetchMyCitiesPaginated: PropTypes.func,
   deleteMyCity: PropTypes.func

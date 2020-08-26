@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import auth from '../utils/auth';
+import auth from '../../../utils/auth';
 
 import {
   doLogout
-} from '../actions/userActions';
+} from '../userActions';
 
 class Logout extends React.Component {
 

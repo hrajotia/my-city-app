@@ -4,8 +4,6 @@ import PropTypes from 'prop-types';
 
 import auth from '../utils/auth';
 
-import UserHome from '../containers/user/UserHome';
-
 export default function PrivateUserRoute({ component: Component, ...rest }) {
   const isAuthed = auth.isAuthenticated();
 
@@ -14,9 +12,13 @@ export default function PrivateUserRoute({ component: Component, ...rest }) {
       {...rest}
       render={(props) => isAuthed === true
         ? (
-          <UserHome history={props.history}>
-            <Component {...props} />
-          </UserHome>
+          <div className='user-home-container'>
+            <div className='user-sections'>
+              <div className='user-main-section'>
+                <Component {...props} />
+              </div>
+            </div>
+          </div>
           )
         : <Redirect to={{ pathname: '/logout', state: { from: props.location } }} />}
     />

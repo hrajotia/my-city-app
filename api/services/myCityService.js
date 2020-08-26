@@ -9,16 +9,16 @@ module.exports = {
 
   sanitizeMyCityPayload: async ({ startDate, endDate, price, color, city, status  }) => {
     const payload = {};
-    const newStartDate = new Date(startDate);
-    const newEndDate = new Date(endDate);
+    const newStartDate = startDate && new Date(startDate);
+    const newEndDate = endDate && new Date(endDate);
     const newPrice = helperUtil.toFloat(price);
     const newCity =  city && await City.getByIdOrName(city);
     const newStatus =  status && await Status.getByIdOrName(status);
 
-    if (newStartDate.toString() !== 'Invalid Date') {
+    if (newStartDate && (newStartDate.toString() !== 'Invalid Date')) {
       payload.startDate = newStartDate;
     }
-    if (newEndDate.toString() !== 'Invalid Date') {
+    if (newEndDate && (newEndDate.toString() !== 'Invalid Date')) {
       payload.endDate = newEndDate;
     }
     if (!Number.isNaN(newPrice)) {

@@ -7,14 +7,14 @@ import FormGroup from 'react-bootstrap/FormGroup';
 import { FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
 
-import '../../../styles/auth.scss';
+import '../../../../../styles/auth.scss';
 
-import AlertBox from '../components/AlertBox';
+import AlertBox from '../../../components/AlertBox';
 
 import {
   updateLoginAttr,
   doLogin
-} from '../actions/userActions';
+} from '../userActions';
 
 export class LoginContainer extends React.Component {
   constructor(props) {
