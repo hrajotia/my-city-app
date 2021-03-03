@@ -21,7 +21,7 @@
     "ms": "2.1.2",
     "passport": "0.4.1",
     "passport-local": "1.0.0",
-    "pug": "3.0.0",
+    "pug": "3.0.1",
     "sails": "1.2.5",
     "sails-disk": "2.1.0",
     "sails-hook-grunt": "4.0.1",
